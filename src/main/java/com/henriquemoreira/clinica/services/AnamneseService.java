@@ -37,4 +37,7 @@ public class AnamneseService {
 		repository.deleteById(id);
 	}
 	
+	public void insertDoencaIntoAnamnese(Integer idAnamnese, Integer idDoenca) {
+		repository.insertDoencaIntoAnamnese(idAnamnese, idDoenca);
+	}
 }
