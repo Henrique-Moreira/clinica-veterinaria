@@ -53,5 +53,9 @@ public class ExameController {
 		service.deleteExameById(id);
 	}
 	
+	@GetMapping("/all/{id}")
+	public List<Exame> searchExamsByIdAnimal(@PathVariable Integer id) {
+		return service.searchExamsByIdAnimal(id);
+	}
 }
 

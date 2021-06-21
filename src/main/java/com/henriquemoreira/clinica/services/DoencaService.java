@@ -36,4 +36,6 @@ public class DoencaService {
 	public void deleteDoencaById(Integer id) {
 		repository.deleteById(id);
 	}
+	
+
 }

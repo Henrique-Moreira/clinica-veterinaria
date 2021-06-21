@@ -36,4 +36,8 @@ public class ExameService {
 	public void deleteExameById(Integer id) {
 		repository.deleteById(id);
 	}
+	
+	public List<Exame> searchExamsByIdAnimal(Integer id) {
+		return repository.searchExamsByIdAnimal(id);
+	}
 }
