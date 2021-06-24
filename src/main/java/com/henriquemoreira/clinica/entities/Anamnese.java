@@ -24,7 +24,7 @@ public class Anamnese implements Serializable {
 	private Integer id;
 	
 	@OneToMany
-	private List<Doenca> doenca = new ArrayList<Doenca>();
+	protected List<Doenca> doencas = new ArrayList<Doenca>();
 	
 	private String problemaSistemaDigestivo;
 	private String problemaSistemaUroGenital;

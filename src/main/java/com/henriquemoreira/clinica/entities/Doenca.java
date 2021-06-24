@@ -20,5 +20,4 @@ public class Doenca implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
 }
