@@ -12,6 +12,7 @@ import com.henriquemoreira.clinica.entities.Doenca;
 import com.henriquemoreira.clinica.repositories.AnamneseRepository;
 import com.henriquemoreira.clinica.repositories.DoencasRepository;
 import com.henriquemoreira.clinica.services.exceptions.AnamneseNotFoundException;
+import com.henriquemoreira.clinica.services.exceptions.DoencaNotFoundException;
 
 @Service
 public class AnamneseService {
@@ -44,15 +45,18 @@ public class AnamneseService {
 		repository.deleteById(id);
 	}
 	
-	@SuppressWarnings("null")
-	@ResponseBody
-    @Transactional
-	public void insertDoencaIntoAnamnese(Integer idAnamnese, Integer idDoenca) {
-		Anamnese anamneseAtual = repository.getById(idAnamnese);
-		Doenca doencaAtual = doencasRepository.getById(idDoenca);
-		List<Doenca> doencas = null;
-		doencas.add(doencasRepository.getById(idDoenca));
+	public Anamnese insertDoencaIntoAnamnese(Integer idAnamnese, Integer idDoenca) {
+		Anamnese anamneseAtual = repository.findById(idAnamnese).
+				orElseThrow(() -> new AnamneseNotFoundException(idAnamnese));
+
+		Doenca doencaAtual = doencasRepository.findById(idDoenca).
+				orElseThrow(() -> new DoencaNotFoundException(idDoenca));
+
+		if(anamneseAtual.getDoencas().size() > 5) 
+			throw new RuntimeException("O limite de doenças por anamnese é de 5.");
+			
+		anamneseAtual.getDoencas().add(doencaAtual);			
 		
-		anamneseAtual.setDoencas(doencas);
+		return updateAnamnese(idAnamnese, anamneseAtual);
 	}
 }

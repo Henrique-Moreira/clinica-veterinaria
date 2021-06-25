@@ -54,8 +54,8 @@ public class AnamneseController {
 	}
 	
 	// vincula uma doença a uma anamnese
-	@GetMapping("/teste/{idAnamnese}/{idDoenca}")
-	public void insertDoencaIntoAnamnese(@PathVariable Integer idAnamnese, @PathVariable Integer idDoenca) {
-		service.insertDoencaIntoAnamnese(idAnamnese, idDoenca);
+	@PutMapping("/teste/{idAnamnese}/{idDoenca}")
+	public Anamnese insertDoencaIntoAnamnese(@PathVariable Integer idAnamnese, @PathVariable Integer idDoenca) {
+		return service.insertDoencaIntoAnamnese(idAnamnese, idDoenca);
 	}
 }

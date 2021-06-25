@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class Anamnese implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany
+	@OneToMany(targetEntity = Doenca.class, cascade = CascadeType.ALL)
 	protected List<Doenca> doencas = new ArrayList<Doenca>();
 	
 	private String problemaSistemaDigestivo;
