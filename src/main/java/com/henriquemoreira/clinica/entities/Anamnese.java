@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -24,8 +24,8 @@ public class Anamnese implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(targetEntity = Doenca.class, cascade = CascadeType.ALL)
-	protected List<Doenca> doencas = new ArrayList<Doenca>();
+	@ManyToMany(targetEntity = Doenca.class, cascade = CascadeType.ALL)
+	private List<Doenca> doencas = new ArrayList<Doenca>();
 	
 	private String problemaSistemaDigestivo;
 	private String problemaSistemaUroGenital;

@@ -4,14 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.henriquemoreira.clinica.entities.Anamnese;
 import com.henriquemoreira.clinica.entities.Doenca;
 import com.henriquemoreira.clinica.repositories.AnamneseRepository;
 import com.henriquemoreira.clinica.repositories.DoencasRepository;
 import com.henriquemoreira.clinica.services.exceptions.AnamneseNotFoundException;
+import com.henriquemoreira.clinica.services.exceptions.DoencaExceptionOfLimitInserted;
 import com.henriquemoreira.clinica.services.exceptions.DoencaNotFoundException;
 
 @Service
@@ -53,8 +52,8 @@ public class AnamneseService {
 				orElseThrow(() -> new DoencaNotFoundException(idDoenca));
 
 		if(anamneseAtual.getDoencas().size() > 5) 
-			throw new RuntimeException("O limite de doenças por anamnese é de 5.");
-			
+			throw new DoencaExceptionOfLimitInserted();
+		
 		anamneseAtual.getDoencas().add(doencaAtual);			
 		
 		return updateAnamnese(idAnamnese, anamneseAtual);
