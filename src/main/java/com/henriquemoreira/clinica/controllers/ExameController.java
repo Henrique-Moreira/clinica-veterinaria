@@ -31,25 +31,25 @@ public class ExameController {
 	
 	// cria os dados de um exame
 	@PostMapping
-	public Exame newDoenca(@RequestBody Exame entity) {
+	public Exame newExame(@RequestBody Exame entity) {
 		return service.newExame(entity);
 	}
 	
 	// edita os dados de um exame
 	@PutMapping("/{id}")
-	public Exame updateDoencaById(@PathVariable Integer id, @RequestBody Exame entity) {
+	public Exame updateExameById(@PathVariable Integer id, @RequestBody Exame entity) {
 		return service.updateExameById(id, entity);
 	}
 	
 	// busca os dados de um exame pelo id
 	@GetMapping("/{id}")
-	public Exame findDoencaById(@PathVariable Integer id) {
+	public Exame findExameById(@PathVariable Integer id) {
 		return service.findExameById(id);
 	}
 	
 	// deleta os dados de um exame passando o id
 	@DeleteMapping("/{id}")
-	public void deleteDoencaById(@PathVariable Integer id) {
+	public void deleteExameById(@PathVariable Integer id) {
 		service.deleteExameById(id);
 	}
 	
