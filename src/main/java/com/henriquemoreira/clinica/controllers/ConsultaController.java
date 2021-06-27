@@ -2,7 +2,10 @@ package com.henriquemoreira.clinica.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,8 +34,9 @@ public class ConsultaController {
 	
 	// cria uma nova consulta
 	@PostMapping
-	public Consulta newConsulta(@RequestBody Consulta entity) {
-		return service.newConsulta(entity);
+	public ResponseEntity<String> newConsulta(@Valid @RequestBody Consulta entity) {
+		service.newConsulta(entity);
+		return ResponseEntity.ok("Consulta cadastrada com sucesso.");
 	}
 	
 	// edita os dados de uma consulta pelo id

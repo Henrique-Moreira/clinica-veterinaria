@@ -2,7 +2,10 @@ package com.henriquemoreira.clinica.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,8 +34,9 @@ public class AnimalController {
 	
 	// cria os dados de um animal
 	@PostMapping
-	public Animal newAnimal(@RequestBody Animal entity) {
-		return service.newAnimal(entity);
+	public ResponseEntity<String> newAnimal(@Valid @RequestBody Animal entity) {
+		service.newAnimal(entity);
+		return ResponseEntity.ok("Animal cadastrado com sucesso.");
 	}
 	
 	// edita os dados de um animal

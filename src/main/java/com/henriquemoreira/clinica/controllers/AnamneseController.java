@@ -2,7 +2,10 @@ package com.henriquemoreira.clinica.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,10 +32,11 @@ public class AnamneseController {
 		return service.allAnamnese();
 	}
 	
-	// cria uma anamnese
+	// cria uma anamnese	
 	@PostMapping
-	public Anamnese newAnamnese(@RequestBody Anamnese entity) {
-		return service.newAnamnese(entity);
+	public ResponseEntity<String> newAnamnese(@Valid @RequestBody Anamnese entity){
+		service.newAnamnese(entity);
+		return ResponseEntity.ok("Anamnese cadastrada com sucesso.");
 	}
 	
 	// edita uma anamnese

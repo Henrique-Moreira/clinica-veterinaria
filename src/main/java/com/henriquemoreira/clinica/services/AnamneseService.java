@@ -10,6 +10,7 @@ import com.henriquemoreira.clinica.entities.Doenca;
 import com.henriquemoreira.clinica.repositories.AnamneseRepository;
 import com.henriquemoreira.clinica.repositories.DoencasRepository;
 import com.henriquemoreira.clinica.services.exceptions.AnamneseNotFoundException;
+import com.henriquemoreira.clinica.services.exceptions.DoencaAlreadyExistsIntoAnamneseException;
 import com.henriquemoreira.clinica.services.exceptions.DoencaExceptionOfLimitInserted;
 import com.henriquemoreira.clinica.services.exceptions.DoencaNotFoundException;
 
@@ -54,6 +55,9 @@ public class AnamneseService {
 		if(anamneseAtual.getDoencas().size() > 5) 
 			throw new DoencaExceptionOfLimitInserted();
 		
+		if(anamneseAtual.getDoencas().contains(doencaAtual))
+			throw new DoencaAlreadyExistsIntoAnamneseException(idAnamnese, idDoenca);
+			
 		anamneseAtual.getDoencas().add(doencaAtual);			
 		
 		return updateAnamnese(idAnamnese, anamneseAtual);
