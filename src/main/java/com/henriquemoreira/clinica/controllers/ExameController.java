@@ -36,7 +36,7 @@ public class ExameController {
 	@PostMapping
 	public ResponseEntity<String> newExame(@Valid @RequestBody Exame entity) {
 		service.newExame(entity);
-		return ResponseEntity.ok("Exame cadastrada com sucesso."); 
+		return ResponseEntity.ok("Exame cadastrado com sucesso."); 
 	}
 	
 	// edita os dados de um exame
@@ -56,10 +56,6 @@ public class ExameController {
 	public void deleteExameById(@PathVariable Integer id) {
 		service.deleteExameById(id);
 	}
-	
-	@GetMapping("/all/{id}")
-	public List<Exame> searchExamsByIdAnimal(@PathVariable Integer id) {
-		return service.searchExamsByIdAnimal(id);
-	}
+
 }
 

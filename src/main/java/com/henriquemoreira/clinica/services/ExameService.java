@@ -54,7 +54,7 @@ public class ExameService {
 		repository.deleteById(id);
 	}
 
-	public List<Exame> searchExamsByIdAnimal(Integer id) {
-		return repository.searchExamsByIdAnimal(id);
-	}
+//	public List<Exame> searchExamsByIdAnimal(Integer id) {
+//		return repository.searchExamsByIdAnimal(id);
+//	}
 }
